@@ -1,20 +1,26 @@
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const inquirer = require('inquirer');
+// import inquirer from 'inquirer';
+const Manager = require("./lib/Manager.js"); // Import Manager class
+const Engineer = require("./lib/Engineer.js"); // Import Engineer class
+const Intern = require("./lib/Intern.js"); // Import Intern class
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
-
-const render = require("./src/page-template.js");
-
+function generateHTML() {
+    const render = require("./src/page-template.js");
+    const OUTPUT_DIR = path.resolve(__dirname, "output");
+    const outputPath = path.join(OUTPUT_DIR, "team.html");
+    const html = render(teamMembers);
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    fs.writeFileSync(outputPath, html);
+    console.log("HTML file generated successfully at", outputPath);
+}
 
 const teamMembers = [];
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
-
+// Function to prompt for manager information
 function promptManager() {
     console.log("Please enter the team manager's information:");
     inquirer.prompt([
@@ -45,6 +51,10 @@ function promptManager() {
     });
 }
 
+// Start by prompting for the manager's information
+promptManager(); // Call the function after its definition
+
+// Function to prompt the user for the next action
 function promptMenu() {
     inquirer.prompt([
         {

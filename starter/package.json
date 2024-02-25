@@ -1,0 +1,6 @@
+{
+  "type": "commonjs",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}
