@@ -1,7 +1,6 @@
 const path = require("path");
 const fs = require("fs");
 const inquirer = require('inquirer');
-// import inquirer from 'inquirer';
 const Manager = require("./lib/Manager.js"); // Import Manager class
 const Engineer = require("./lib/Engineer.js"); // Import Engineer class
 const Intern = require("./lib/Intern.js"); // Import Intern class
@@ -20,7 +19,7 @@ function generateHTML() {
 
 const teamMembers = [];
 
-// Function to prompt for manager information
+// get manager info
 function promptManager() {
     console.log("Please enter the team manager's information:");
     inquirer.prompt([
@@ -51,10 +50,10 @@ function promptManager() {
     });
 }
 
-// Start by prompting for the manager's information
-promptManager(); // Call the function after its definition
+// this is where code starts
+promptManager();
 
-// Function to prompt the user for the next action
+// After manager, brings to menu
 function promptMenu() {
     inquirer.prompt([
         {
@@ -77,7 +76,7 @@ function promptMenu() {
         }
     });
 }
-
+// get info for engineer
 function promptEngineer() {
     console.log("Please enter the engineer's information:");
     inquirer.prompt([
@@ -107,7 +106,7 @@ function promptEngineer() {
         promptMenu();
     });
 }
-
+// get info for intern
 function promptIntern() {
     console.log("Please enter the intern's information:");
     inquirer.prompt([
@@ -139,7 +138,7 @@ function promptIntern() {
 }
 
 
-
+// finish team
 function finishBuildingTeam() {
     if (teamMembers.length === 0) {
         console.log("Cannot generate HTML. Team is empty.");
